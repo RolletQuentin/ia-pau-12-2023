@@ -8,8 +8,9 @@ import Footer from '@/components/FooterBase.vue'
     <div id="page">
         <Header> </Header>
 
-        <RouterView />
-
+        <main>
+            <RouterView />
+        </main>
         <Footer></Footer>
     </div>
 </template>
@@ -19,5 +20,11 @@ import Footer from '@/components/FooterBase.vue'
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+main {
+    padding: 10px 50px;
+    margin-bottom: 30px;
+    flex: 1;
 }
 </style>

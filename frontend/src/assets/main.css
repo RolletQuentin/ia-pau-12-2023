@@ -2,4 +2,18 @@
 
 body {
     font-family: 'Nunito', 'Open Sans', Arial, sans-serif;
+    line-height: 1.25;
+    text-align: justify;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 20px 0px;
+}
+
+h2 {
+    font-size: 1.75em;
+    font-weight: 600;
+    margin: 15px 0px;
 }

@@ -28,6 +28,7 @@ export default {
     height: 180px;
 }
 header {
+    background-color: white;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     position: fixed;
     width: 100%;

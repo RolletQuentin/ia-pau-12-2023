@@ -1,6 +1,8 @@
 <template>
-    <h2>Hello World from Vue!</h2>
-    <h2>{{ welcomeMessage }}</h2>
+    <main>
+        <h2>Hello World from Vue!</h2>
+        <h2>{{ welcomeMessage }}</h2>
+    </main>
 </template>
 
 <script lang="ts">
@@ -20,3 +22,10 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+main {
+    border: 1px solid red;
+    flex: 1;
+}
+</style>

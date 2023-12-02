@@ -8,11 +8,11 @@ from pydantic import BaseModel
 from typing import List
 
 
-
 app = FastAPI()
 
 origins = [
     "http://localhost",
+    "http://localhost:5173",
     "http://localhost:8080",
 ]
 
@@ -23,6 +23,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 class Create_project(BaseModel):
     nom_du_projet: str
@@ -41,10 +42,12 @@ class Create_project(BaseModel):
 async def root():
     return {"message": "Hello world from FastAPI!"}
 
+
 @app.post("/create-project/")
 async def create_project(create_project: Create_project):
     put_new_project(create_project)
     return create_project
+  
 
 @app.get("/links-between-projects/")
 async def links_between_projects():

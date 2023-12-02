@@ -100,12 +100,13 @@ def get_data_projet_affichage():
     table_edges = bdd_edges.all()
     edges = []
     for i in range(len(table_edges)):
-        edges.append(table_edges[i])
+        edges.append(table_edges[i]["fields"])
     data_projet_affichage["nodes"] = nodes
     data_projet_affichage["edges"] = edges
 
     return data_projet_affichage
 
+print(get_data_projet_affichage())
 
 def put_new_project(data):
     bdd_projet = api.table(base_id, tables_id["projet"])

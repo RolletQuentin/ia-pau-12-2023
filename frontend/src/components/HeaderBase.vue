@@ -6,7 +6,9 @@
             <div>
                 <router-link class="link" :to="{ name: 'register' }">Inscription</router-link>
             </div>
-            <div><router-link class="link" :to="{ name: 'home' }">Les projets</router-link></div>
+            <div>
+                <router-link class="link" :to="{ name: 'projects' }">Les projets</router-link>
+            </div>
             <div>
                 <router-link class="link" :to="{ name: 'home' }">Les associations</router-link>
             </div>

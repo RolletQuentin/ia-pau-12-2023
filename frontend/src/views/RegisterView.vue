@@ -6,6 +6,10 @@
 
         <RegisterForm /> -->
 
+        <h2>Se connecter</h2>
+
+        <LoginForm />
+
         <h2>Nouveau projet</h2>
 
         <ProjectForm />
@@ -19,13 +23,15 @@
 <script lang="ts" scoped>
 import ProjectForm from '@/components/Forms/ProjectForm.vue'
 // import SkillsForm from '@/components/Forms/SkillsForm.vue'
-import RegisterForm from '@/components/Forms/RegisterForm.vue'
+// import RegisterForm from '@/components/Forms/RegisterForm.vue'
+import LoginForm from '@/components/Forms/LoginForm.vue'
 
 export default {
     components: {
         ProjectForm,
         // SkillsForm,
-        RegisterForm
+        // RegisterForm,
+        LoginForm
     }
 }
 </script>

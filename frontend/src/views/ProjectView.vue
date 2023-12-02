@@ -43,12 +43,12 @@ export default {
                 {
                     source: 'Gioia',
                     target: 'VRACOOP',
-                    value: 10
+                    value: 0.3
                 },
                 {
                     source: 'Gioia',
                     target: 'ERRO ETXEA',
-                    value: 30
+                    value: 0.8
                 }
             ]
 

@@ -3,17 +3,25 @@
     <header>
         <img :src="HBNLogo" />
         <nav>
-            <div><a>Inscription</a></div>
-            <div><a>Les projets</a></div>
-            <div><a>Les associations</a></div>
+            <div>
+                <router-link class="link" :to="{ name: 'register' }">Inscription</router-link>
+            </div>
+            <div><router-link class="link" :to="{ name: 'home' }">Les projets</router-link></div>
+            <div>
+                <router-link class="link" :to="{ name: 'home' }">Les associations</router-link>
+            </div>
         </nav>
     </header>
 </template>
 
 <script lang="ts">
 import HBNLogo from '@/assets/images/logo_hbn.png'
+import { RouterLink } from 'vue-router'
 
 export default {
+    components: {
+        RouterLink
+    },
     setup() {
         return {
             HBNLogo
@@ -22,7 +30,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .spacer {
     /* same as height of the header */
     height: 180px;
@@ -51,7 +59,9 @@ header {
         div {
             margin-left: 15px;
 
-            a {
+            .link {
+                color: inherit;
+                text-decoration: none;
                 text-transform: uppercase;
                 font-weight: 600;
             }

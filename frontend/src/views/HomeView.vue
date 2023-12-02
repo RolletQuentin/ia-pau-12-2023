@@ -60,22 +60,6 @@
     </div>
 </template>
 
-<script lang="ts">
-import { ref } from 'vue'
+<script lang="ts"></script>
 
-export default {
-    setup() {
-        const welcomeMessage = ref('')
-        fetch('http://localhost:8000/')
-            .then((response) => response.json())
-            .then((data) => (welcomeMessage.value = data.message))
-            .catch((error) => console.error(error))
-
-        return {
-            welcomeMessage
-        }
-    }
-}
-</script>
-
-<style lang="scss"></style>
+<style lang="scss" scoped></style>

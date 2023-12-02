@@ -17,3 +17,18 @@ h2 {
     font-weight: 600;
     margin: 15px 0px;
 }
+
+button {
+    width: 150px;
+    border-radius: 30px;
+    border: none;
+    padding: 15px;
+    background-color: #e6e350;
+    color: white;
+    transition: all 0.4s ease;
+}
+
+button:hover {
+    background-color: #0a3334;
+    cursor: pointer;
+}

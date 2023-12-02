@@ -4,7 +4,7 @@
 
 <script lang="ts"></script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 footer {
     display: flex;
     justify-content: center;

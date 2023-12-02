@@ -15,7 +15,7 @@ import Footer from '@/components/FooterBase.vue'
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #page {
     display: flex;
     flex-direction: column;

@@ -50,7 +50,7 @@
                 <input v-model="city" type="text" id="city" required />
             </div>
 
-            <button type="submit">Envoyer</button>
+            <button :onclick="submitForm">Envoyer</button>
         </form>
     </FormWrapper>
 </template>
@@ -82,6 +82,28 @@ export default {
         const email = ref('')
         const city = ref('')
 
+        function submitForm() {
+            const data = {
+                projectTitle: projectTitle.value,
+                maturityStage: maturityStage.value,
+                projectNeeds: projectNeeds.value,
+                projectOffer: projectOffer.value,
+                circularityForm: circularityForm.value,
+                lastName: lastName.value,
+                firstName: firstName.value,
+                phone: phone.value,
+                email: email.value,
+                city: city.value
+            }
+            fetch('http://localhost:8000/create-project', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+        }
+
         return {
             projectTitle,
             maturityStages,
@@ -93,7 +115,8 @@ export default {
             firstName,
             phone,
             email,
-            city
+            city,
+            submitForm
         }
     }
 }

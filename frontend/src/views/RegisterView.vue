@@ -2,9 +2,9 @@
     <div>
         <h1>Nous rejoindre</h1>
 
-        <h2>Inscription</h2>
+        <!-- <h2>Inscription</h2>
 
-        <RegisterForm />
+        <RegisterForm /> -->
 
         <h2>Nouveau projet</h2>
 

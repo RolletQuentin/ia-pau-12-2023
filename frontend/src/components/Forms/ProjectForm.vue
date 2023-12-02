@@ -107,16 +107,16 @@ export default {
 
         function submitForm() {
             const data = {
-                projectTitle: projectTitle.value,
-                projectDescription: projectDescription.value,
-                maturityStage: maturityStage.value,
-                projectNeeds: projectNeeds.value,
-                activityDomain: activityDomain.value,
-                projectCity: projectCity.value,
-                cp: cp.value,
-                listChosenOdd: listChosenOdd.value,
-                inMaterials: inMaterials.value,
-                coproducts: coproducts.value
+                nom_du_projet: projectTitle.value,
+                description_du_projet: projectDescription.value,
+                maturite_du_projet: maturityStage.value,
+                besoins_actuels: projectNeeds.value,
+                domaine_activite: activityDomain.value,
+                lieu_du_projet: projectCity.value,
+                code_postal: cp.value,
+                odd: listChosenOdd.value,
+                matieres_entrantes: inMaterials.value,
+                coproduits: coproducts.value
             }
             fetch('http://localhost:8000/create-project', {
                 method: 'POST',

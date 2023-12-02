@@ -2,10 +2,11 @@
     <FormWrapper>
         <form>
             <div>
-                <h2>Votre projet</h2>
-
                 <label for="projectTitle">Titre du projet</label>
                 <input v-model="projectTitle" type="text" id="projectTitle" required />
+
+                <label for="projectDescription">Description</label>
+                <textarea v-model="projectDescription" id="projectDescription" required></textarea>
 
                 <label for="maturityStage">Stade de maturité</label>
                 <div>
@@ -21,35 +22,38 @@
                     </label>
                 </div>
 
-                <label for="projectNeeds">Besoins du projet</label>
+                <label for="projectNeeds">Quels sont tes besoins actueles ?</label>
                 <textarea v-model="projectNeeds" id="projectNeeds" required></textarea>
 
-                <label for="projectOffer">Offre accompagnant le projet</label>
-                <textarea v-model="projectOffer" type="text" id="projectOffer" required />
+                <label for="activityDomain">Domaine d'activité</label>
+                <input v-model="activityDomain" type="text" id="activityDomain" required />
 
-                <label for="circularityForm">Forme de circularité</label>
-                <textarea v-model="circularityForm" id="circularityForm" required></textarea>
+                <label for="projectCity">Lieu du projet</label>
+                <input v-model="projectCity" type="text" id="projectCity" required />
+
+                <label for="cp">Code postal du projet</label>
+                <input v-model="cp" type="text" id="cp" required />
+
+                <label for="maturityStage">ODD fixé par l'ONU</label>
+                <div>
+                    <label v-for="(odd, index) in listOdd" :key="index">
+                        <input
+                            type="checkbox"
+                            v-model="listChosenOdd"
+                            :value="odd"
+                            :id="'odd_' + index"
+                            required
+                        />
+                        {{ odd }}
+                    </label>
+                </div>
+
+                <label for="inMaterials">Matières entrantes</label>
+                <input v-model="inMaterials" type="text" id="inMaterials" required />
+
+                <label for="coproducts">Coproduits</label>
+                <input v-model="coproducts" type="text" id="coproducts" required />
             </div>
-
-            <div>
-                <h2>Vos coordonnées</h2>
-
-                <label for="lastName">Nom</label>
-                <input v-model="lastName" type="text" id="lastName" required />
-
-                <label for="firstName">Prénom</label>
-                <input v-model="firstName" type="text" id="firstName" required />
-
-                <label for="phone">Téléphone</label>
-                <input v-model="phone" type="tel" id="phone" required />
-
-                <label for="email">Mail</label>
-                <input v-model="email" type="email" id="email" required />
-
-                <label for="city">Ville</label>
-                <input v-model="city" type="text" id="city" required />
-            </div>
-
             <button :onclick="submitForm">Envoyer</button>
         </form>
     </FormWrapper>
@@ -65,7 +69,9 @@ export default {
     },
     setup() {
         const projectTitle = ref('')
+        const projectDescription = ref('')
         const maturityStages = ref([
+            '0-Projet à reprendre!',
             "1-Graine (L'idée)",
             '2-Plant (Busisness model et business plan)',
             '3-Fleur (Proof of concept)',
@@ -73,27 +79,44 @@ export default {
         ])
         const maturityStage = ref()
         const projectNeeds = ref('')
-        const projectOffer = ref('')
-        const circularityForm = ref('')
-
-        const lastName = ref('')
-        const firstName = ref('')
-        const phone = ref('')
-        const email = ref('')
-        const city = ref('')
+        const activityDomain = ref('')
+        const projectCity = ref('')
+        const cp = ref('')
+        const listOdd = ref([
+            '1-Pas de pauvreté',
+            '2-Zéro faim',
+            '3-Bonne santé et bien-être',
+            '4-Education de qualité',
+            '5-Égalité entre les sexes',
+            '6-Eau propre assainissement',
+            "7-Energie propre et d'un coût abordable",
+            '8-Travail décent et croissance économique',
+            '9-Industrie, innovation et infrastructure',
+            '10-Inégalités réduites',
+            '11-Villes et communautés durable',
+            '12-Consommation et production responsables',
+            '13-Mesures relatives à la lutte contre les changements climatiques',
+            '14-Vie aquatique',
+            '15-Vie terrestre',
+            '16-Paix, justice et institutions efficaces',
+            '17-Partenariats pour la réalisation des objectifs'
+        ])
+        const listChosenOdd = ref([])
+        const inMaterials = ref('')
+        const coproducts = ref('')
 
         function submitForm() {
             const data = {
                 projectTitle: projectTitle.value,
+                projectDescription: projectDescription.value,
                 maturityStage: maturityStage.value,
                 projectNeeds: projectNeeds.value,
-                projectOffer: projectOffer.value,
-                circularityForm: circularityForm.value,
-                lastName: lastName.value,
-                firstName: firstName.value,
-                phone: phone.value,
-                email: email.value,
-                city: city.value
+                activityDomain: activityDomain.value,
+                projectCity: projectCity.value,
+                cp: cp.value,
+                listChosenOdd: listChosenOdd.value,
+                inMaterials: inMaterials.value,
+                coproducts: coproducts.value
             }
             fetch('http://localhost:8000/create-project', {
                 method: 'POST',
@@ -106,16 +129,17 @@ export default {
 
         return {
             projectTitle,
+            projectDescription,
             maturityStages,
             maturityStage,
             projectNeeds,
-            projectOffer,
-            circularityForm,
-            lastName,
-            firstName,
-            phone,
-            email,
-            city,
+            activityDomain,
+            projectCity,
+            cp,
+            listOdd,
+            listChosenOdd,
+            inMaterials,
+            coproducts,
             submitForm
         }
     }

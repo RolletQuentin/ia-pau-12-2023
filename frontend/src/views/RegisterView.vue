@@ -2,24 +2,30 @@
     <div>
         <h1>Nous rejoindre</h1>
 
-        <h2>Porteurs de projets</h2>
+        <h2>Inscription</h2>
+
+        <RegisterForm />
+
+        <h2>Nouveau projet</h2>
 
         <ProjectForm />
 
-        <h2>Porteurs bénévoles de compétences</h2>
+        <!-- <h2>Porteurs bénévoles de compétences</h2>
 
-        <SkillsForm />
+        <SkillsForm /> -->
     </div>
 </template>
 
 <script lang="ts" scoped>
 import ProjectForm from '@/components/Forms/ProjectForm.vue'
-import SkillsForm from '@/components/Forms/SkillsForm.vue'
+// import SkillsForm from '@/components/Forms/SkillsForm.vue'
+import RegisterForm from '@/components/Forms/RegisterForm.vue'
 
 export default {
     components: {
         ProjectForm,
-        SkillsForm
+        // SkillsForm,
+        RegisterForm
     }
 }
 </script>

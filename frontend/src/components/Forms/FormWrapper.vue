@@ -1,7 +1,5 @@
 <template>
     <div id="register">
-        <h1>Rejoindre l'aventure</h1>
-
         <slot></slot>
     </div>
 </template>

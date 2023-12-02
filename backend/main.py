@@ -44,7 +44,7 @@ async def root():
 @app.post("/create-project/")
 async def create_project(create_project: Create_project):
     put_new_project(create_project)
-    return create_project   
+    return create_project
 
 @app.get("/links-between-projects/")
 async def links_between_projects():

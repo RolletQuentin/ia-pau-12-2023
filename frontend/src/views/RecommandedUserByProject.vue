@@ -8,12 +8,16 @@
                 <input type="text" id="projectName" v-model="projectName" />
             </div>
         </form>
-        <button :onclick="submitForm">Envoyer</button>
+        <button @click="submitForm">Envoyer</button>
     </FormWrapper>
 
-    <div v-if="isLoaded">
-        <div v-for="user in data.users" v-bind:key="user.id">
-            <h2>{{ user.name }}</h2>
+    <div v-if="isLoaded" class="data-visualization">
+        <div v-for="user in data" v-bind:key="user.ID">
+            <h2>ID de l'utilsateur : {{ user.ID }}</h2>
+
+            <h3>Compétences :</h3>
+            <p>{{ user.Compétences }}</p>
+            <p>Utilisateur recommandé à {{ Math.floor(user.recommendation.coef * 100) }} %</p>
         </div>
     </div>
 </template>
@@ -32,7 +36,7 @@ export default {
         const isLoaded = ref(false)
 
         function submitForm() {
-            fetch('http://localhost:8000//links-projet-with-users/', {
+            fetch('http://localhost:8000/links-projet-with-users/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -44,6 +48,7 @@ export default {
                 .then((response) => response.json())
                 .then((responseData) => {
                     data.value = responseData
+                    console.log(data.value)
                     isLoaded.value = true
                 })
                 .catch((error) => console.error(error))
@@ -58,3 +63,13 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.data-visualization {
+    h3 {
+        font-size: 1.25em;
+        font-weight: 300;
+        margin-bottom: 5px;
+    }
+}
+</style>

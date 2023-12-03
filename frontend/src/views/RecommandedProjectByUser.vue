@@ -1,11 +1,11 @@
 <template>
-    <h1>Recommandation de projets pour un projet</h1>
+    <h1>Recommandation de projets pour un utilisateur</h1>
 
     <FormWrapper>
         <form>
             <div>
-                <label for="projectName">Nom du projet</label>
-                <input type="text" id="projectName" v-model="projectName" />
+                <label for="userid">ID de l'utilisateur</label>
+                <input type="text" id="userid" v-model="userid" />
             </div>
         </form>
         <button :onclick="submitForm">Envoyer</button>
@@ -31,7 +31,7 @@ export default {
         FormWrapper
     },
     setup() {
-        const projectName = ref('')
+        const userid = ref('')
         const data = ref()
         const isLoaded = ref(false)
 
@@ -42,7 +42,7 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    nom_du_projet: projectName.value
+                    nom_du_projet: userid.value
                 })
             })
                 .then((response) => response.json())
@@ -54,7 +54,7 @@ export default {
         }
 
         return {
-            projectName,
+            userid,
             isLoaded,
             data,
             submitForm

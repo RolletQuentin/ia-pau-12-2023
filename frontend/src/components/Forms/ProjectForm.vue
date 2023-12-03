@@ -42,7 +42,6 @@
                             v-model="listChosenOdd"
                             :value="odd"
                             :id="'odd_' + index"
-                            required
                         />
                         {{ odd }}
                     </label>
@@ -54,8 +53,8 @@
                 <label for="coproducts">Coproduits</label>
                 <input v-model="coproducts" type="text" id="coproducts" required />
             </div>
-            <button :onclick="submitForm">Envoyer</button>
         </form>
+        <button :onclick="submitForm">Envoyer</button>
     </FormWrapper>
 </template>
 
@@ -71,11 +70,11 @@ export default {
         const projectTitle = ref('')
         const projectDescription = ref('')
         const maturityStages = ref([
-            '0-Projet à reprendre!',
-            "1-Graine (L'idée)",
-            '2-Plant (Busisness model et business plan)',
-            '3-Fleur (Proof of concept)',
-            '4-Fruit (Commercialisation)'
+            'Projet à reprendre!',
+            "1 - Graine (L'idée)",
+            '2 - Plant (Le business model)',
+            '3 - Fleur (Le prototype)',
+            '4 - Fruit (La commercialisation)'
         ])
         const maturityStage = ref()
         const projectNeeds = ref('')
@@ -118,7 +117,7 @@ export default {
                 matieres_entrantes: inMaterials.value,
                 coproduits: coproducts.value
             }
-            fetch('http://localhost:8000/create-project', {
+            fetch('http://localhost:8000/create-project/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import RecomandedProject from '@/views/RecomandedProject.vue'
 import RegisterView from '../views/RegisterView.vue'
 import ProjectView from '../views/ProjectView.vue'
+import RecomandedUserByProject from '../views/RecommandedUserByProject.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +22,16 @@ const router = createRouter({
             path: '/projets',
             name: 'projects',
             component: ProjectView
+        },
+        {
+            path: '/recommandation-projet',
+            name: 'recommandation',
+            component: RecomandedProject
+        },
+        {
+            path: '/recommandation-utilisateur',
+            name: 'userRecommandation',
+            component: RecomandedUserByProject
         }
     ]
 })

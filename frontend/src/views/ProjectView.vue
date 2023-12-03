@@ -18,7 +18,7 @@ export default {
                 .then((response) => response.json())
                 .then((responseData) => {
                     data.value = responseData
-                    console.log(data)
+                    // console.log(data)
                     createGraph()
                 })
                 .catch((error) => console.error(error))
@@ -38,19 +38,17 @@ export default {
                 id: node['Nom du Projet'],
                 ...data
             }))
-            // const links = data.value.edges
-            const links = [
-                {
-                    source: 'Gioia',
-                    target: 'VRACOOP',
-                    value: 0.3
-                },
-                {
-                    source: 'Gioia',
-                    target: 'ERRO ETXEA',
-                    value: 0.8
-                }
-            ]
+
+            const links = data.value.edges
+                .map((edge: any) => ({
+                    source: edge['source'],
+                    target: edge['cible'],
+                    value: edge['coef'],
+                    ...edge
+                }))
+                .filter((edge: any) => edge.value > 0.85)
+
+            // filter only links with
 
             // Create a force simulation
             const simulation = d3
@@ -80,17 +78,27 @@ export default {
                 .selectAll('line')
                 .data(links)
                 .join('line')
-                .attr('stroke-width', (d: any) => Math.sqrt(d.value) * 10)
+                .attr('stroke-width', (d: any) => d.value ** 10 * 10)
 
             const node = svg
                 .append('g')
-                .attr('stroke', '#fff')
-                .attr('stroke-width', 1)
-                .selectAll('circle')
+                .selectAll('.node')
                 .data(nodes)
-                .join('circle')
+                .join('g')
+                .attr('class', 'node')
+
+            node.append('circle')
                 .attr('r', 30)
                 .attr('fill', (d: any) => color(d.group))
+
+            node.append('text')
+                .text(function (d: any) {
+                    return d.id
+                })
+                .style('fill', '#000')
+                .style('font-size', '20px')
+                .attr('x', 0)
+                .attr('y', 0)
 
             node.append('title').text((d: any) => d.id)
 
@@ -104,7 +112,7 @@ export default {
                     .attr('x2', (d: any) => d.target.x)
                     .attr('y2', (d: any) => d.target.y)
 
-                node.attr('cx', (d: any) => d.x).attr('cy', (d: any) => d.y)
+                node.attr('transform', (d: any) => `translate(${d.x}, ${d.y})`)
             })
 
             // Reheat the simulation when drag starts, and fix the subject position

@@ -3,6 +3,7 @@ from airtable_api import get_data_projet
 import settings
 from geopy.geocoders import Nominatim  # Distance entre deux code postaux
 from geopy.distance import geodesic  # Distance entre deux code postaux
+from airtable_api import get_projets
 from airtable_api import put_new_relation
 from model import similarity_score_texte
 
@@ -201,7 +202,6 @@ print(fc_domaine_application('ERRO ETXEA', 'EKOBESTA'))
 
 data_projet = get_data_projet()
 
-
 def recommandation_projet_projet(ID1, ID2, model):
     coef_proximite_geographique = fc_proximite_geographique(ID1,ID2)
     coef_champ_lexical = fc_champ_lexical(ID1, ID2, model)
@@ -263,5 +263,16 @@ def recommandation_all_projets(log=False):
             print(len(key_checked))
     put_new_relation(res)
     del model
+
+def recommandation_projet_allreco_projets(ID_Projet):
+    data_projets = get_projets()
+    model = fasttext.load_model(model_path)
+    res = {}
+    for key in data_projet.keys():
+        res[key] = recommandation_projet_projet(key, ID_Projet, model)
+    del model
+    for projet in data_projets:
+        projet["recommendation"] = res[projet["Nom du Projet"]]
+    return sorted(data_projets, key=lambda x: x['recommendation']['coef'], reverse=True)
 
 

@@ -1,12 +1,8 @@
 import fasttext
-
 from airtable_api import get_data_projet
-
 import settings
-
 from geopy.geocoders import Nominatim  # Distance entre deux code postaux
 from geopy.distance import geodesic  # Distance entre deux code postaux
-
 from airtable_api import put_new_relation
 from model import similarity_score_texte
 
@@ -255,7 +251,7 @@ def recommandation_projet_all_projets(ID):
     put_new_relation(res)
     del model
 
-def recommandation_all_projets():
+def recommandation_all_projets(log=False):
     model = fasttext.load_model(model_path)
     res = []
     key_checked = []
@@ -263,6 +259,8 @@ def recommandation_all_projets():
         for key2 in key_checked:
             res.append(recommandation_projet_projet(key1, key2, model))
         key_checked.append(key1)
+        if log:
+            print(len(key_checked))
     put_new_relation(res)
     del model
 

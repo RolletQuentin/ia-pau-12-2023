@@ -1,6 +1,7 @@
 from pyairtable import Api
 from settings import base_id,api_keys,tables_id
 
+
 api = Api(api_keys)
 
 
@@ -42,7 +43,6 @@ def get_data_la_communaute():
 
     return data_la_communaute
 
-
 def get_data_projet():
     bdd_projet = api.table(base_id, tables_id["projet"])
     table_projet = bdd_projet.all()
@@ -66,7 +66,6 @@ def get_data_projet():
             data_projet[id_nom_projet]['ODD'] = data_projet[id_nom_projet]['ODD'].split(",")
 
     return data_projet
-
 
 def get_data_projet_affichage():
     data_projet_affichage = {}

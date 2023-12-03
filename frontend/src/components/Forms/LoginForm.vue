@@ -2,11 +2,11 @@
     <FormWrapper>
         <form>
             <div>
-                <label for="id">Identifiant</label>
-                <input v-model="id" id="id" />
+                <label for="identifiant">Identifiant</label>
+                <input type="text" v-model="identifiant" id="identifiant" required />
             </div>
-            <button :onclick="submitForm">Envoyer</button>
         </form>
+        <button @click="submitForm">Envoyer</button>
     </FormWrapper>
 </template>
 
@@ -19,23 +19,26 @@ export default {
         FormWrapper
     },
     setup() {
-        const id = ref('')
+        const identifiant = ref('')
 
         function submitForm() {
             const data = {
-                id: id.value
+                id: identifiant.value
             }
-            fetch('http://localhost:8000/login', {
+            fetch('http://localhost:8000/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             })
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.error(error))
         }
 
         return {
-            id,
+            identifiant,
             submitForm
         }
     }

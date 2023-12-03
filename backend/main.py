@@ -27,8 +27,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 class Login(BaseModel):
     id: str
+
 
 class Create_project(BaseModel):
     nom_du_projet: str
@@ -43,7 +46,6 @@ class Create_project(BaseModel):
     coproduits: str
 
 
-
 @app.get("/")
 async def root():
     return {"message": "Hello world from FastAPI!"}
@@ -53,11 +55,13 @@ async def root():
 async def login(login: Login):
     return get_user(int(login.id))
 
+
 @app.post("/create-project/")
 async def create_project(create_project: Create_project):
     put_new_project(create_project)
     recommandation_projet_all_projets(create_project.nom_du_projet)
     return create_project
+
 
 @app.get("/links-between-projects/")
 async def links_between_projects():
@@ -74,6 +78,7 @@ class Projet(BaseModel):
 async def links_projet_with_users(projet: Projet):
     data_users = recommendatation_projet_all_pc(projet.nom_du_projet)
     return JSONResponse(content=data_users)
+
 
 class User(BaseModel):
     id: str

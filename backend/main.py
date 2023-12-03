@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from requests import Request
 from airtable_api import get_data_projet_affichage
 from airtable_api import put_new_project
+from projet_projet import recommandation_projet_all_projets
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List
@@ -46,6 +47,7 @@ async def root():
 @app.post("/create-project/")
 async def create_project(create_project: Create_project):
     put_new_project(create_project)
+    recommandation_projet_all_projets(create_project.nom_du_projet)
     return create_project
   
 

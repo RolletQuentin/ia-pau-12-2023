@@ -1,9 +1,6 @@
-import fasttext  # NLP
-import numpy as np
 
+import numpy as np
 # Chargement du modèle pré-entraîné
-model_path = 'cc.fr.300.bin'
-model = fasttext.load_model(model_path)
 
 
 # Fonction pour obtenir le vecteur d'un texte
@@ -15,7 +12,7 @@ def get_text_vector(text, model):
 
 
 # Fonction qui calcul la similarité sémentique entre deux texte. Renvoi une similarité entre 0 et 1.
-def similarity_score_texte(texte1, texte2):
+def similarity_score_texte(texte1, texte2, model):
     # Obtenez les vecteurs des deux textes
     vector1 = get_text_vector(texte1, model)
     vector2 = get_text_vector(texte2, model)

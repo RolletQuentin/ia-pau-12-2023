@@ -1,25 +1,6 @@
 from pyairtable import Api
+from settings import base_id,api_keys,tables_id
 
-
-# BDD ID
-base_id = "app4924hTDhLbszSD"
-
-api_keys = "patTGiSKUXpYbNEA6.005a3913cfef12b7e37316af540359d8e1c5182f6a6069347153c71b37538dbf"
-
-# Table ID
-tables_id = {
-    "la_communaute": "tblyivVXHzURoILqZ",
-    "porteurs_de_competences": "tbl4rl89j1Vugh9Tn",
-    "porteurs_de_projets": "tbla1I6ymd2HqKpCW",
-    "projet": "tblrQDL12OOKsCpmP",
-    "competences": "tblFirJ0bqG7Gbn0G",
-    "famille_de_competences": "tbl2ICkLP0zhKMJzi",
-    "categorie_de_materiel": "tblh0bjMXFJvWX9oM",
-    "materiel": "tblwSCoRnvmaHUHv6",
-    "matieres": "tbl6a4EW3SqwB7lD0",
-    "lieux": "tblpZt91ooyTSkZs0",
-    "relation": "tblAc6O9yKLsJQxWC"
-}
 
 api = Api(api_keys)
 
@@ -62,7 +43,6 @@ def get_data_la_communaute():
 
     return data_la_communaute
 
-
 def get_data_projet():
     bdd_projet = api.table(base_id, tables_id["projet"])
     table_projet = bdd_projet.all()
@@ -87,7 +67,6 @@ def get_data_projet():
 
     return data_projet
 
-
 def get_data_projet_affichage():
     data_projet_affichage = {}
     bdd_projet = api.table(base_id, tables_id["projet"])
@@ -106,7 +85,9 @@ def get_data_projet_affichage():
 
     return data_projet_affichage
 
-print(get_data_projet_affichage())
+def put_new_relation(data):
+    bdd_relation = api.table(base_id, tables_id["relation"])
+    bdd_relation.batch_create(data)
 
 def put_new_project(data):
     bdd_projet = api.table(base_id, tables_id["projet"])

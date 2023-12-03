@@ -10,7 +10,14 @@
                 <router-link class="link" :to="{ name: 'projects' }">Les projets</router-link>
             </div>
             <div>
-                <router-link class="link" :to="{ name: 'home' }">Les associations</router-link>
+                <router-link class="link" :to="{ name: 'recommandation' }"
+                    >Recommandation des projets</router-link
+                >
+            </div>
+            <div>
+                <router-link class="link" :to="{ name: 'userRecommandation' }"
+                    >Recommandation des utilisateurs</router-link
+                >
             </div>
         </nav>
     </header>

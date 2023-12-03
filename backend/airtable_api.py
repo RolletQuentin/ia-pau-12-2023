@@ -95,6 +95,17 @@ def get_data_projet_affichage():
 
     return data_projet_affichage
 
+def get_users():
+    bdd_la_communaute = api.table(base_id, tables_id["la_communaute"])
+    table_la_communaute = bdd_la_communaute.all()
+
+    res = []
+    for i in range(len(table_la_communaute)):
+        if ('Adhérent Oui/Non/En attente' in table_la_communaute[i]["fields"]) and (table_la_communaute[i]["fields"]['Adhérent Oui/Non/En attente'] == "Oui"):
+            res.append(table_la_communaute[i]["fields"])
+    return res
+
+
 def put_new_relation(data):
     bdd_relation = api.table(base_id, tables_id["relation"])
     bdd_relation.batch_create(data)

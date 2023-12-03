@@ -5,6 +5,7 @@ from airtable_api import get_data_projet_affichage
 from airtable_api import put_new_project
 from airtable_api import get_user
 from projet_projet import recommandation_projet_all_projets
+from projet_projet import recommandation_projet_allreco_projets
 from pc_projet import recommendatation_pc_all_projets
 from pc_projet import recommendatation_projet_all_pc
 from fastapi.responses import JSONResponse
@@ -68,7 +69,10 @@ async def links_between_projects():
 class Projet(BaseModel):
     nom_du_projet: str
 
-
+@app.post("/project-recommandation/")
+async def project_recommandation(projet: Projet):
+    data_projets = recommandation_projet_allreco_projets(projet.nom_du_projet)
+    return JSONResponse(content=data_projets)
 
 @app.post("/links-projet-with-users/")
 async def links_projet_with_users(projet: Projet):

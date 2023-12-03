@@ -2,6 +2,7 @@ import fasttext
 
 from airtable_api import get_data_la_communaute
 from airtable_api import get_data_projet
+from airtable_api import get_users
 from model import similarity_score_texte
 from geopy.geocoders import Nominatim  # Distance entre deux code postaux
 from geopy.distance import geodesic  # Distance entre deux code postaux
@@ -307,9 +308,13 @@ def recommendatation_pc_all_projets(IdPC):
     return res
 
 def recommendatation_projet_all_pc(ID_Projet):
+    data_users = get_users()
     model = fasttext.load_model(model_path)
     res = {}
     for key in data_la_communaute.keys():
         res[key] = recommandatation_pc_projet(key,ID_Projet,model)
     del model
-    return res
+    for user in data_users:
+        user["recommendation"] = res[user["ID"]]
+    return sorted(data_users, key=lambda x: x['recommendation']['coef'], reverse=True)
+

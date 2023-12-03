@@ -13,11 +13,16 @@
 
     <div v-if="isLoaded" class="data-visualization">
         <div v-for="project in data" v-bind:key="project.ID">
-            <h2>ID de l'utilsateur : {{ project.ID }}</h2>
+            <h2>{{ project['Nom du Projet'] }}</h2>
 
-            <h3>Compétences :</h3>
-            <p>{{ project.Compétences }}</p>
-            <p>Utilisateur recommandé à {{ Math.floor(project.recommendation.coef * 100) }} %</p>
+            <h3>Description :</h3>
+            <p>{{ project['Description du projet'] }}</p>
+
+            <h3>Recommandation</h3>
+            <p>
+                Ce projet vous est recommandé à
+                {{ Math.floor(project.recommendation.coef * 100) }} %
+            </p>
         </div>
     </div>
 </template>

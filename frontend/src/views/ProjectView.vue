@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Vue.js and D3 Line Chart</h2>
+        <h2>Tout les projets</h2>
         <svg></svg>
     </div>
 </template>
@@ -27,8 +27,8 @@ export default {
 
         function createGraph() {
             // Specify the dimension of the chart
-            const width = 1000
-            const height = 1000
+            const width = 1300
+            const height = 1300
 
             // Specify the color scale
             const color = d3.scaleOrdinal(d3.schemeCategory10)

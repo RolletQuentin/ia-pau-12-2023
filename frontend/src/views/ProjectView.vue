@@ -80,7 +80,7 @@ export default {
                 .selectAll('line')
                 .data(links)
                 .join('line')
-                .attr('stroke-width', (d: any) => Math.sqrt(d.value))
+                .attr('stroke-width', (d: any) => Math.sqrt(d.value) * 10)
 
             const node = svg
                 .append('g')

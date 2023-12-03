@@ -1,13 +1,22 @@
-#Fichier config
+# Fichier config
 
-#poids projet <-> projet
+# poids projet <-> projet
 
-poids_domain_application = 3
-poids_champ_lexical = 2
-poids_proximite_geographique = 3
-poids_flux_matiere = 2
-poids_flux_competence = 2
+poids_projet_projet_domain_application = 3
+poids_projet_projet_champ_lexical = 2
+poids_projet_projet_proximite_geographique = 3
+poids_projet_projet_flux_matiere = 2
+poids_projet_projet_flux_competence = 2
 
+
+# poids porteurDeProjet <-> projet
+
+poids_pc_projet_champ_lexical = 2
+poids_pc_projet_proximite_geographique = 3
+poids_pc_projet_flux_matiere = 2
+poids_pc_projet_flux_competence = 2
+poids_pc_projet_flux_materiel = 2
+poids_pc_projet_interet = 2
 
 # BDD ID
 base_id = "app4924hTDhLbszSD"
@@ -28,4 +37,3 @@ tables_id = {
     "lieux": "tblpZt91ooyTSkZs0",
     "relation": "tblAc6O9yKLsJQxWC"
 }
-

@@ -54,3 +54,5 @@ async def create_project(create_project: Create_project):
 @app.get("/links-between-projects/")
 async def links_between_projects():
     return JSONResponse(content=get_data_projet_affichage())
+
+

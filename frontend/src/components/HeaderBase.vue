@@ -11,12 +11,17 @@
             </div>
             <div>
                 <router-link class="link" :to="{ name: 'recommandation' }"
-                    >Recommandation des projets</router-link
+                    >Recommandation projet -> projets</router-link
                 >
             </div>
             <div>
                 <router-link class="link" :to="{ name: 'userRecommandation' }"
-                    >Recommandation des utilisateurs</router-link
+                    >Recommandation projet -> utilisateurs</router-link
+                >
+            </div>
+            <div>
+                <router-link class="link" :to="{ name: 'projectRecommandationByUser' }"
+                    >Recommandation utilisateur -> projets</router-link
                 >
             </div>
         </nav>
@@ -66,7 +71,7 @@ header {
         display: flex;
 
         div {
-            margin-left: 15px;
+            margin-left: 25px;
 
             .link {
                 color: inherit;

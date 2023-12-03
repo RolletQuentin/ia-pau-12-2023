@@ -5,6 +5,16 @@ from settings import base_id,api_keys,tables_id
 api = Api(api_keys)
 
 
+def get_user(id):
+    bdd_la_communaute = api.table(base_id, tables_id["la_communaute"])
+    table_la_communaute = bdd_la_communaute.all()
+
+    for i in range(len(table_la_communaute)):
+        if table_la_communaute[i]["fields"]["ID"] == id:
+            return table_la_communaute[i]["fields"]
+
+    return { "ID": id, 'error': "inconnue" }
+
 def get_data_la_communaute():
     bdd_la_communaute = api.table(base_id, tables_id["la_communaute"])
     table_la_communaute = bdd_la_communaute.all()

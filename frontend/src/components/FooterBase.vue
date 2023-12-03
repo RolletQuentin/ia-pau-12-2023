@@ -1,5 +1,5 @@
 <template>
-    <footer>©2023 - Onsaitpas</footer>
+    <footer>©2023 - Les expatriés</footer>
 </template>
 
 <script lang="ts">

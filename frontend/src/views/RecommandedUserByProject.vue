@@ -17,7 +17,49 @@
 
             <h3>Compétences :</h3>
             <p>{{ user.Compétences }}</p>
-            <p>Utilisateur recommandé à {{ Math.floor(user.recommendation.coef * 100) }} %</p>
+
+            <h3>Recommandation</h3>
+            <p>
+                Cet utilisateur vous est recommandé à
+                <strong>{{ Math.floor(user.recommendation.coef * 100) }} %</strong>
+            </p>
+            <p>En effet, cet utilisateur vous est recommandé pour :</p>
+            <ul>
+                <li v-if="user.recommendation.coef_proximite_geographique > 0.5">
+                    Sa proximité géographique :
+                    <strong
+                        >{{
+                            Math.floor(user.recommendation.coef_proximite_geographique * 100)
+                        }}
+                        %</strong
+                    >
+                </li>
+                <li v-if="user.recommendation.coef_champ_lexical > 0.5">
+                    Son champ lexical :
+                    <strong
+                        >{{ Math.floor(user.recommendation.coef_champ_lexical * 100) }} %</strong
+                    >
+                </li>
+                <li v-if="user.recommendation.coef_flux_matiere > 0.5">
+                    Son flux de matière :
+                    <strong>{{ Math.floor(user.recommendation.coef_flux_matiere * 100) }} %</strong>
+                </li>
+                <li v-if="user.recommendation.coef_flux_competence > 0.5">
+                    Son flux de compétences :
+                    <strong
+                        >{{ Math.floor(user.recommendation.coef_flux_competence * 100) }} %</strong
+                    >
+                </li>
+                <li v-if="user.recommendation.coef_domain_application > 0.5">
+                    Son domaine d'application :
+                    <strong
+                        >{{
+                            Math.floor(user.recommendation.coef_domain_application * 100)
+                        }}
+                        %</strong
+                    >
+                </li>
+            </ul>
         </div>
     </div>
 </template>

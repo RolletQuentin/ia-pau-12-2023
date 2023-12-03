@@ -105,6 +105,14 @@ def get_users():
             res.append(table_la_communaute[i]["fields"])
     return res
 
+def get_projets():
+    bdd_projet = api.table(base_id, tables_id["projet"])
+    table_projet = bdd_projet.all()
+
+    res = []
+    for i in range(len(table_projet)):
+        res.append(table_projet[i]["fields"])
+    return res
 
 def put_new_relation(data):
     bdd_relation = api.table(base_id, tables_id["relation"])

@@ -18,7 +18,7 @@ export default {
                 .then((response) => response.json())
                 .then((responseData) => {
                     data.value = responseData
-                    console.log(data)
+                    // console.log(data)
                     createGraph()
                 })
                 .catch((error) => console.error(error))
@@ -38,19 +38,17 @@ export default {
                 id: node['Nom du Projet'],
                 ...data
             }))
-            // const links = data.value.edges
-            const links = [
-                {
-                    source: 'Gioia',
-                    target: 'VRACOOP',
-                    value: 0.3
-                },
-                {
-                    source: 'Gioia',
-                    target: 'ERRO ETXEA',
-                    value: 0.8
-                }
-            ]
+
+            const links = data.value.edges
+                .map((edge: any) => ({
+                    source: edge['source'],
+                    target: edge['cible'],
+                    value: edge['coef'],
+                    ...edge
+                }))
+                .filter((edge: any) => edge.value > 0.85)
+
+            // filter only links with
 
             // Create a force simulation
             const simulation = d3
@@ -80,7 +78,7 @@ export default {
                 .selectAll('line')
                 .data(links)
                 .join('line')
-                .attr('stroke-width', (d: any) => Math.sqrt(d.value) * 10)
+                .attr('stroke-width', (d: any) => d.value ** 10 * 10)
 
             const node = svg
                 .append('g')

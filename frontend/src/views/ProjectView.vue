@@ -82,13 +82,23 @@ export default {
 
             const node = svg
                 .append('g')
-                .attr('stroke', '#fff')
-                .attr('stroke-width', 1)
-                .selectAll('circle')
+                .selectAll('.node')
                 .data(nodes)
-                .join('circle')
+                .join('g')
+                .attr('class', 'node')
+
+            node.append('circle')
                 .attr('r', 30)
                 .attr('fill', (d: any) => color(d.group))
+
+            node.append('text')
+                .text(function (d: any) {
+                    return d.id
+                })
+                .style('fill', '#000')
+                .style('font-size', '20px')
+                .attr('x', 0)
+                .attr('y', 0)
 
             node.append('title').text((d: any) => d.id)
 
@@ -102,7 +112,7 @@ export default {
                     .attr('x2', (d: any) => d.target.x)
                     .attr('y2', (d: any) => d.target.y)
 
-                node.attr('cx', (d: any) => d.x).attr('cy', (d: any) => d.y)
+                node.attr('transform', (d: any) => `translate(${d.x}, ${d.y})`)
             })
 
             // Reheat the simulation when drag starts, and fix the subject position

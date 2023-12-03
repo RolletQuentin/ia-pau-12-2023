@@ -5,6 +5,7 @@ from airtable_api import get_data_projet_affichage
 from airtable_api import put_new_project
 from airtable_api import get_user
 from projet_projet import recommandation_projet_all_projets
+from pc_projet import recommendatation_pc_all_projets
 from pc_projet import recommendatation_projet_all_pc
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -66,6 +67,8 @@ async def create_project(create_project: Create_project):
 async def links_between_projects():
     return JSONResponse(content=get_data_projet_affichage())
 
+
+
 class Projet(BaseModel):
     nom_du_projet: str
 
@@ -76,3 +79,11 @@ async def links_projet_with_users(projet: Projet):
     data_users = recommendatation_projet_all_pc(projet.nom_du_projet)
     return JSONResponse(content=data_users)
 
+
+class User(BaseModel):
+    id: str
+
+@app.post("/links-user-with-projets/")
+async def link_user_with_projets(user: User):
+    data_projets = recommendatation_pc_all_projets(int(user.id))
+    return JSONResponse(content=data_projets)

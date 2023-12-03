@@ -2,7 +2,11 @@
     <footer>©2023 - Onsaitpas</footer>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+export default {
+    setup() {}
+}
+</script>
 
 <style lang="scss" scoped>
 footer {

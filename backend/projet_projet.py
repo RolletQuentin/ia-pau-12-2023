@@ -11,8 +11,8 @@ model_path = 'cc.fr.300.bin'
 
 """Doc
 Code Postal <-> Code Postal
-@param ZIP_CODE_1 : code postal
-@param ZIP_CODE_2 : code postal
+@param ID1 : Id d'un projet
+@param ID2 : Id d'un projet
 @return Note allant de 0 à 3 pts.
 """
 
@@ -212,22 +212,22 @@ def recommandation_projet_projet(ID1, ID2, model):
     tot_poids = 0
     tot_coef = 0
     if coef_proximite_geographique != -1:
-        tot_poids += settings.poids_proximite_geographique
+        tot_poids += settings.poids_projet_projet_proximite_geographique
         coef_proximite_geographique = coef_proximite_geographique /3
-        tot_coef += coef_proximite_geographique * settings.poids_proximite_geographique
+        tot_coef += coef_proximite_geographique * settings.poids_projet_projet_proximite_geographique
     if coef_champ_lexical != -1:
-        tot_poids += settings.poids_champ_lexical
-        tot_coef += coef_champ_lexical * settings.poids_champ_lexical
+        tot_poids += settings.poids_projet_projet_champ_lexical
+        tot_coef += coef_champ_lexical * settings.poids_projet_projet_champ_lexical
     if coef_flux_matiere != -1:
-        tot_poids += settings.poids_flux_matiere
-        tot_coef += coef_flux_matiere * settings.poids_flux_matiere
+        tot_poids += settings.poids_projet_projet_flux_matiere
+        tot_coef += coef_flux_matiere * settings.poids_projet_projet_flux_matiere
     if coef_flux_competence != -1:
-        tot_poids += settings.poids_flux_competence
-        tot_coef += coef_flux_competence * settings.poids_flux_competence
+        tot_poids += settings.poids_projet_projet_flux_competence
+        tot_coef += coef_flux_competence * settings.poids_projet_projet_flux_competence
     if coef_domain_application != -1:
-        tot_poids += settings.poids_domain_application
+        tot_poids += settings.poids_projet_projet_domain_application
         coef_domain_application = coef_domain_application /3
-        tot_coef += coef_domain_application * settings.poids_domain_application
+        tot_coef += coef_domain_application * settings.poids_projet_projet_domain_application
 
     coef = tot_coef / tot_poids
 

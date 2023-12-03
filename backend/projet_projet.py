@@ -7,7 +7,7 @@ from airtable_api import put_new_relation
 from model import similarity_score_texte
 
 
-model_path = 'cc.fr.300.bin'
+model_path = 'cc.fr.50.bin'
 
 """Doc
 Code Postal <-> Code Postal

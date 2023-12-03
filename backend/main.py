@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from requests import Request
 from airtable_api import get_data_projet_affichage
 from airtable_api import put_new_project
+from airtable_api import get_user
 from projet_projet import recommandation_projet_all_projets
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -24,7 +25,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+class Login(BaseModel):
+    id: str
 
 class Create_project(BaseModel):
     nom_du_projet: str
@@ -39,20 +41,27 @@ class Create_project(BaseModel):
     coproduits: str
 
 
+
 @app.get("/")
 async def root():
     return {"message": "Hello world from FastAPI!"}
 
+
+@app.post("/login/")
+async def login(login: Login):
+    return get_user(int(login.id))
 
 @app.post("/create-project/")
 async def create_project(create_project: Create_project):
     put_new_project(create_project)
     recommandation_projet_all_projets(create_project.nom_du_projet)
     return create_project
-  
 
 @app.get("/links-between-projects/")
 async def links_between_projects():
     return JSONResponse(content=get_data_projet_affichage())
+
+
+@app.post("/links-projet-with-users/")
 
 

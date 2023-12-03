@@ -313,5 +313,3 @@ def recommendatation_projet_all_pc(ID_Projet):
         res[key] = recommandatation_pc_projet(key,ID_Projet,model)
     del model
     return res
-
-print(recommendatation_projet_all_pc('Gioia'))

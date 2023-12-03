@@ -8,5 +8,9 @@ source .venv/bin/activate
 ```
 
 ```
+pip freeze > requirements.txt
+```
+
+```
 .venv/bin/uvicorn main:app --reload
 ```

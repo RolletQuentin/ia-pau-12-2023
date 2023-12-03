@@ -307,14 +307,11 @@ def recommendatation_pc_all_projets(IdPC):
     for key in data_projet.keys():
         res[key] = recommandatation_pc_projet(IdPC,key,model)
     del model
-    print(res)
     for projet in data_projets:
-        print(projet)
-        print(projet["Nom du Projet"])
         projet["recommendation"] = res[projet["Nom du Projet"]]
     return sorted(data_projets, key=lambda x: x['recommendation']['coef'], reverse=True)
 
-print(recommendatation_pc_all_projets(13))
+
 
 def recommendatation_projet_all_pc(ID_Projet):
     data_users = get_users()
